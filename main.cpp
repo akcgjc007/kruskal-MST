@@ -1,19 +1,27 @@
 #include "main.h"
 
-int main()
+int main(int argc, const char *argv[])
 {
 	srand(time(0));
-	
+
 	/** Reading the input file **/
-	int n = 100;
+	int n = stoi(argv[1]);
+	int p = stoi(argv[2]);
+
 	ff(i, n)
 	{
 		vv<int> v;
 		ff(j, n)
 		{
-			v.push_back(rand()%n);
+			if (rand() % 100 < p)
+			{
+				v.push_back(rand() % 100);
+				// cout << "1"; E;
+			} else {
+				// cout << "0"; E;
+			}
 		}
-	
+
 		mmatrix.pb(v);
 	}
 
@@ -21,10 +29,10 @@ int main()
 	time_calc t;
 	t.st(); // Starting the time counter
 
-	graph g(40);
-	ff(i, 40)
+	graph g(n);
+	ff(i, n)
 	{
-		ff(j, 40)
+		ff(j, n)
 		{
 			if (mmatrix[i][j] != -1)
 				g.addedge(i, j, mmatrix[i][j]);
@@ -33,6 +41,7 @@ int main()
 
 	g.kruskal(); // Calling the kruskal algorithm
 
+	cout << "Elapsed time for the whole process." << endl;
 	t.fin(); // Stopping the time counter
 	return 0;
 }

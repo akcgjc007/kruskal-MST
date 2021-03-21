@@ -25,10 +25,11 @@ class time_calc
 
 public:
 	void st() { t = clock(); }
-	void fin()
+	auto fin()
 	{
 		ts = clock() - t;
 		printf("~time->\t %f ms.\n", ts);
+		return ts;
 	}
 };
 
@@ -173,6 +174,7 @@ public:
  	*/
 	void kruskal()
 	{
+		cout << "Elapsed time for running the kruskal algorithm." << endl;
 		time_calc ktime;
 		ktime.st();
 
@@ -185,7 +187,9 @@ public:
 			kruskal_addedge(i);
 		}
 
-		ktime.fin();
+		
+		ofstream f("data.txt", ios::app);
+		f << ktime.fin() << ", " << this->n << "\n"; 
 
 		show_kruskal();
 	}
@@ -201,14 +205,14 @@ public:
 		}
 		ff(i, n)
 		{
-			cout << "Vertex " << i << " -> ";
+			// cout << "Vertex " << i << " -> ";
 			for (auto j : kruskal_mst[i])
 			{
-				cout << j << space;
+				// cout << j << space;
 			}
-			E;
+			// E;
 		}
-		E;
+		// E;
 		cout << "Total cost of the network " << netsum << endl;
 		cout << "The cost of the MST is " << cost << endl;
 		cout << "Total savings are " << netsum - cost << endl;
